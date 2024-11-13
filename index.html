@@ -8,4 +8,69 @@
 <body>
     Hello
 </body>
+
+<!-- <script type="module">
+    const mysql = require('mysql2');
+    const connection = mysql.createConnection({
+        host: '127.0.0.1',
+        user: 'root',
+        password: "",
+        database: 'cs139'
+    });
+
+    connection.connect((err) => {
+    if (err) {
+        console.error('Connection failed:', err.message);
+    } else {
+        console.log('Connected to the MySQL database successfully!');
+    }
+    // Close the connection after testing
+
+    connection.query("show tables", function(err, rows, fields) {
+    if(err){
+        console.log("An error ocurred performing the query.");
+        console.log(err);
+        return;
+    }
+
+    console.log("Query succesfully executed", rows);
+});
+connection.end(function(){
+    // The connection has been closed
+});
+});
+
+</script> -->
+<script type="module">
+    const mysql = require('mysql2/promise');
+
+async function main()
+{
+    // Create a connection to the database
+    const connection = await mysql.createConnection
+    ({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'cs139'
+    });
+
+    try
+    {
+        // Execute a simple query
+        const [rows, ] = await connection.execute('show tables');
+        console.log(rows);  // Output rows from your_table
+    }
+    catch (error)
+    {
+        console.error(error);  // Handle any errors
+    }
+    finally
+    {
+        await connection.end();  // Close the connection
+    }
+}
+
+main();
+</script>
 </html>
