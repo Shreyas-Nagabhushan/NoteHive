@@ -1,0 +1,16 @@
+{
+  "name": "notehive",
+  "version": "1.0.0",
+  "main": "Main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  }
+}
