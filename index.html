@@ -21,7 +21,15 @@
     }
 </style>
 <script type="module" src="./Components/HeaderComponent.js"></script>
+<script type="module" src="./Pages/LoginSignupScreen.js"></script>
 <body>
     <header-component></header-component>
 </body>
+<script type="module" src="./Common/Navigation.js"></script>
+<script>
+    window.onload = ()=>
+    {
+        window.openPage("login-signup-screen");
+    }
+</script>
 </html>

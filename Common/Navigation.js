@@ -1,4 +1,4 @@
-const path = require('path');
+import { initializeStyles } from "./InitializeStyles.js";
 
 window.navigationStack = [];
 window.navigationStackPointer = -1;
@@ -36,7 +36,7 @@ window.openPage = (pageName)=>
     {
         headerComponent.showBackButton();
     }
-    
+
     initializeStyles();
 
 }
