@@ -14,6 +14,11 @@ class HomeScreen extends HTMLElement
         `;
 
         this.style.backgroundColor = theme.primaryBackgroundColor;
+        this.style.display = "flex";
+        this.style.flex = 1;
+        this.style.flexDirection = "row";
+        this.style.alignItems = "center";
+        this.style.justifyContents = "space-evenly";
         this.style.width = "100%";
         this.style.height = "100%";
 
@@ -23,9 +28,13 @@ class HomeScreen extends HTMLElement
 
         if(true)
         {
-            const addUsersButton = document.createElement("button");
-            addUsersButton.innerText = "Add Users";
-            this.appendChild(addUsersButton);
+            const editUsersButton = document.createElement("button");
+            editUsersButton.innerText = "Edit Users";
+            editUsersButton.addEventListener("click", (event) => 
+            {
+                //Navigate to EditUsersScreen
+            });
+            this.appendChild(editUsersButton);
         }
 
         if(true)
@@ -41,6 +50,18 @@ class HomeScreen extends HTMLElement
             browseResourceButton.innerText = "Browse Resource Button";
             this.appendChild(browseResourceButton);
         }
+
+        this.querySelectorAll("button").forEach((button)=>
+        {
+            button.style.flex = 1;
+            button.style.backgroundColor = theme.primaryBackgroundColor;
+            button.style.border = "solid white 2px";
+            button.style.color = "white";
+            button.style.cursor = "pointer";
+            button.style.borderRadius = "5px";
+            button.style.padding = "5px";
+            button.style.margin = "10px";
+        });
 
 
     }
