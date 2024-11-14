@@ -17,6 +17,10 @@ class HomeScreen extends HTMLElement
         this.style.width = "100%";
         this.style.height = "100%";
 
+        const openNotebookButton = document.createElement("button");
+        openNotebookButton.innerText = "Open a Notebook";
+        this.appendChild(openNotebookButton);
+
         if(true)
         {
             const addUsersButton = document.createElement("button");
@@ -37,6 +41,8 @@ class HomeScreen extends HTMLElement
             browseResourceButton.innerText = "Browse Resource Button";
             this.appendChild(browseResourceButton);
         }
+
+
     }
 
 }
