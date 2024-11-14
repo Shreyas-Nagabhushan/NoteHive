@@ -1,5 +1,7 @@
 import { theme } from "../Common/Constants/Theme.js";
+import { getUser } from "../Common/Globals.js";
 import UserListComponent from "../Components/UserListComponent.js";
+import DatabaseConnector from "../Database/DatabaseConnector.js";
 
 class EditUsersScreen extends HTMLElement
 {
@@ -8,7 +10,7 @@ class EditUsersScreen extends HTMLElement
         super();
     }
 
-    connectedCallback()
+    async connectedCallback()
     {
         this.style.backgroundColor = theme.primaryBackgroundColor;
         this.style.display = "flex";
@@ -36,12 +38,30 @@ class EditUsersScreen extends HTMLElement
         userListContainer.appendChild(userListComponent);
 
         //Display all users 
+        const currentUser = getUser();
+        const currentUserEmail = currentUser.email;
 
-    }
+        const query = `SELECT * from users where institute_id = (select institute_id from users where email = '${currentUserEmail}')};`;
+        const result = DatabaseConnector.executeQuery(query).then((result) => 
+        {
+            const numberOfUsers = result.rows.length;
+            for(let i = 0; i < numberOfUsers; i++)
+            {
+                const user = result.rows[i];
 
-    getAllUsers()
-    {
-        
+                const email = user.email;
+                const role = user.role;
+                const name = user.name;
+
+                const userDisplayComponent = document.createElement("user-display-component");
+
+                userDisplayComponent.setAttribute("name", name);
+                userDisplayComponent.setAttribute("email", email);
+                userDisplayComponent.setAttribute("role", role);
+                userListComponent.appendChild(userDisplayComponent);
+            }
+        });
+
     }
 }
 

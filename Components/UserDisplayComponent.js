@@ -20,7 +20,8 @@ class UserDisplayComponent extends HTMLElement
         this.style.boxSizing = "border-box";
 
         this.innerHTML = `
-            <div class="email-column" style="flex: 5; margin: 5px;">${this.getAttribute("email")}</div>
+            <div class="name-column" style="flex: 2.5; margin: 5px;">${this.getAttribute("name")}</div>
+            <div class="email-column" style="flex: 2.5; margin: 5px;">${this.getAttribute("email")}</div>
             <select class="role-selector" style="flex: 2.5;margin: 5px;"></select>
             <button class="remove-user-button" style="flex: 2.5;margin: 5px;">Remove</button>
         `;

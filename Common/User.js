@@ -11,7 +11,7 @@ class User
     {
         await DatabaseConnector.connect();
 
-        const query = `SELECT level FROM privilege WHERE email='${this.email}';`;
+        const query = `SELECT role FROM users WHERE email='${this.email}';`;
         const result = await DatabaseConnector.executeQuery(query);
         await DatabaseConnector.disconnect();
 
@@ -21,7 +21,6 @@ class User
         }
         return null;
     }
-
 
 } 
 
