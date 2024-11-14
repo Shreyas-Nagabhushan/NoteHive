@@ -1,3 +1,4 @@
+import { getUser } from "../Common/Globals.js";
 import DatabaseConnector from "../Database/DatabaseConnector.js";
 import NotebookDisplayComponent from "./NotebookDisplayComponent.js";
 
@@ -37,7 +38,7 @@ class NotebookBrowser extends HTMLElement
             notebookBrowserList.innerHTML = ""; 
 
             const searchValue = event.target.value.toLowerCase();
-            const query = `SELECT * FROM notebook where name LIKE '%${searchValue}%' OR subject LIKE '%${searchValue}%';`;
+            const query = `SELECT * FROM notebook where name LIKE '%${searchValue}%' OR subject_id in (SELECT id FROM subject WHERE name LIKE '%${searchValue}%');`;
             const result = await DatabaseConnector.executeQuery(query);
 
             for(let i = 0; i < result.rows.length; i++)
@@ -47,11 +48,11 @@ class NotebookBrowser extends HTMLElement
                 notebookDisplay.setAttribute("subject", result.rows[i].subject);
                 notebookDisplay.setAttribute("last-modified", result.rows[i].last_modified);
 
-                const subscribedQuery = `SELECT COUNT(*) from subscribed where email=`;
-                const isSubscribed = 
+                const user = getUser();
+                const subscribedQuery = `SELECT COUNT(*) from subscribed where email=${user.email} AND notebook_id=${result.rows[i].id};`;
+                const isSubscribed = DatabaseConnector.executeQuery(subscribedQuery);
 
-                notebookDisplay.setAttribute("is-subscribed", result.rows[i].is_subscribed);
-
+                notebookDisplay.setAttribute("is-subscribed", isSubscribed);
                 notebookBrowserList.appendChild(notebookDisplay);
             }
 

@@ -36,6 +36,7 @@ window.openPage = (pageName)=>
     {
         headerComponent.showBackButton();
     }
+    
     initializeStyles();
 
 }

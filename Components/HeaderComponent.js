@@ -1,7 +1,5 @@
 import { theme } from '../Common/Constants/Theme.js';
 
-const express = require('express');
-
 class HeaderComponent extends HTMLElement
 {
     constructor()
@@ -34,18 +32,19 @@ class HeaderComponent extends HTMLElement
 
         const style = document.createElement('style');
         style.textContent =
-            `            
-            #backButton:hover{
-                // color: rgb(0, 136, 255);
+        `            
+            #backButton:hover
+            {
                 cursor: pointer;
                 border: 2px solid rgb(0, 136, 255);           
             }
 
-            #backButton{
+            #backButton
+            {
                 color: white;
                 border: solid white 2px;
             }    
-            `;
+        `;
 
         this.backButton.onclick = ()=>{ window.goBack(); };
         document.body.appendChild(this.backButton);
