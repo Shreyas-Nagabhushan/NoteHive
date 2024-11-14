@@ -13,12 +13,16 @@ class DatabaseConnector
 
     static async connect()
     {
-        DatabaseConnector.connection = await mysql.createConnection(DatabaseConnector.connectionDetails);
+        if(!DatabaseConnector.connection)
+        {
+            DatabaseConnector.connection = await mysql.createConnection(DatabaseConnector.connectionDetails);
+        }
     }
 
     static async disconnect()
     {
         await DatabaseConnector.connection.end();
+        DatabaseConnector.connection = null;
     }
 
     static async executeQuery(query)
@@ -27,3 +31,5 @@ class DatabaseConnector
         return { rows: rows, fields: fields };
     }
 }
+
+export default DatabaseConnector;
