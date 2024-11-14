@@ -1,5 +1,7 @@
 import { roles, rolesDisplayNames } from "../Common/Constants/Roles.js";
 import { theme } from "../Common/Constants/Theme.js";
+import addNewUser from "../Database/UtilityFunctions.js";
+import HomeScreen from "../Pages/HomeScreen.js";
 
 class SignupComponent extends HTMLElement
 {
@@ -53,7 +55,7 @@ class SignupComponent extends HTMLElement
                 <input type="password" class="password-input" placeholder="Enter password...">
 
                 <div class="label">Confirm Password:</div>
-                <input type="password" class="password-input" placeholder="Re-enter password...">
+                <input type="password" class="confirm-password-input" placeholder="Re-enter password...">
 
                 <div class="label">Institute:</div>
                 <input type="text" class="institute-input" placeholder="Enter institute...">
@@ -61,11 +63,12 @@ class SignupComponent extends HTMLElement
                 <div class="label">Role:</div>
                 <select class="role-selector"></select>
 
-                <button style="width:50%;margin:10px;">Submit</button>
+                <button class="submit-button" style="width:50%;margin:10px;">Submit</button>
             </div>    
         `;
 
         const signUpForm = this.querySelector(".signup-form");
+        const submitButton = this.querySelector(".submit-button");
 
         signUpForm.style.display = "flex";
         signUpForm.style.flexDirection = "column";
@@ -85,6 +88,51 @@ class SignupComponent extends HTMLElement
             option.value = roleValue;
             roleSelector.appendChild(option);
         }
+
+        submitButton.addEventListener("click", async ()=>
+        {
+            const name = this.querySelector(".name-input").value;
+            const email = this.querySelector(".email-input").value;
+            const password = this.querySelector(".password-input").value;
+            const confirmPassword = this.querySelector(".confirm-password-input").value;
+            const institute = this.querySelector(".institute-input").value;
+            const role = this.querySelector(".role-selector").value;
+
+            const bIsValidInput = this.validateEntry(name, email, password, confirmPassword, institute, role);
+            if(!bIsValidInput)
+            {
+                console.log("Not valid input");
+                return;
+            }
+            const userInfo = {
+                name: name,
+                email: email,
+                password: password,
+                institute: institute,
+                role: role
+            }
+            const bIsUserAdded = await addNewUser(userInfo);
+            if(bIsUserAdded)
+            {
+                console.log("User added");
+                window.openPage("home-screen");
+            }
+            else
+            {
+                console.log("User not added");
+            }
+        });
+    }
+
+    validateEntry(name, email, password, confirmPassword, institute, role)
+    {
+        //TODO: Add validation
+        // if(name && email && password && confirmPassword && institute && role &&(confirmPassword == password))
+        // {
+        //     return true;
+        // }
+        // return false;
+        return true;
     }
 }
 

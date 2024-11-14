@@ -8,8 +8,12 @@ export function getUser()
     return user;
 }
 
-export async function login(email, password)
+// Move to UtilityFunctions ??
+export async function login(userInfo)
 {
+    const email = userInfo.email;
+    const password = userInfo.password;
+    
     if(!email || !password)
     {
         return false;

@@ -47,7 +47,7 @@ class HomeScreen extends HTMLElement
         if(true)
         {
             const browseResourceButton = document.createElement("button");
-            browseResourceButton.innerText = "Browse Resource Button";
+            browseResourceButton.innerText = "Browse Resources";
             this.appendChild(browseResourceButton);
         }
 
