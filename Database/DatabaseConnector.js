@@ -27,7 +27,15 @@ class DatabaseConnector
 
     static async executeQuery(query)
     {
-        const [rows, fields] = await connection.execute(query);
+        if(!DatabaseConnector.connection)
+        {
+            await DatabaseConnector.connect();
+        }
+
+        const [rows, fields] = await DatabaseConnector.connection.execute(query);
+
+        await DatabaseConnector.disconnect();
+
         return { rows: rows, fields: fields };
     }
 }
