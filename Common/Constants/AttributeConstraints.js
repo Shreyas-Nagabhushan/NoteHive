@@ -1,5 +1,5 @@
 export const attributeConstraints =
 {
-    maxNameLength: 50,
+    maxNameLength: 64,
     minPasswordLength: 8
 };

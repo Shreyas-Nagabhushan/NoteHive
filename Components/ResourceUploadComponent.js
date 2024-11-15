@@ -13,7 +13,6 @@ class ResourceUploadComponent extends HTMLElement
         this.style.justifyContent = "space-evenly";
         
         this.innerHTML = `
-            <div class="resource-upload-heading">Upload Resource</div>
             <div class="resource-upload-form">
                 <div style="flex:1;width:100%;">Name:</div>
                 <input type="text" class="name-input" placeholder="Enter name...">
