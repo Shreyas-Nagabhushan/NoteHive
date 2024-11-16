@@ -52,9 +52,9 @@ class NotebookBrowser extends HTMLElement
                 notebookDisplay.setAttribute("subject", subjectNameResult.rows[0].name);
                 notebookDisplay.setAttribute("last-modified", result.rows[i].last_modified);
 
-                // const user = getUser();
-                // const subscribedQuery = `SELECT COUNT(*) from subscribed where email=${user.email} AND notebook_id=${result.rows[i].id};`;
-                // const isSubscribed = await DatabaseConnector.executeQuery(subscribedQuery);
+                const user = getUser();
+                const subscribedQuery = `SELECT COUNT(*) from subscribed where email=${user.email} AND notebook_id=${result.rows[i].id};`;
+                const isSubscribed = await DatabaseConnector.executeQuery(subscribedQuery);
 
                 notebookDisplay.setAttribute("is-subscribed", isSubscribed);
                 notebookBrowserList.appendChild(notebookDisplay);
