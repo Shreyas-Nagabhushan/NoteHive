@@ -16,7 +16,9 @@ class LoginComponent extends HTMLElement
         this.style.border = "solid white 3px";
         this.style.borderRadius = "10px";
         this.style.padding = "10px";
-
+        this.style.border = "solid white 3px";
+        this.style.borderRadius = "10px";
+        this.style.padding = "10px";
 
         this.innerHTML =`
             <style>

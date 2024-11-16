@@ -23,6 +23,22 @@ class User
         return null;
     }
 
+    async getInstituteId()
+    {
+        await DatabaseConnector.connect();
+
+        const query = `SELECT institute_id FROM user WHERE email='${this.email}';`;
+        const result = await DatabaseConnector.executeQuery(query);
+        await DatabaseConnector.disconnect();
+
+        if(result.rows.length > 0)
+        {
+            return result.rows[0].institute_id;
+        }
+
+        return null;
+    }
+
     
 
 } 
