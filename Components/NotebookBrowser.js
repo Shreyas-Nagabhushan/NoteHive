@@ -32,6 +32,8 @@ class NotebookBrowser extends HTMLElement
         notebookBrowserList.style.flex = "1";
         notebookBrowserList.style.flexDirection = "column";
         notebookBrowserList.style.overflowY = "scroll";
+        notebookBrowserList.style.width = "100%";
+        notebookBrowserList.style.height = "100%";
 
         searchBox.addEventListener("input", async(event) =>
         {
