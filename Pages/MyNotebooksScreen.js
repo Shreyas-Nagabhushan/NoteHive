@@ -1,3 +1,4 @@
+import NotebookBrowser from "../Components/NotebookBrowser.js";
 class MyNotebooksScreen extends HTMLElement
 {
     constructor()
@@ -7,6 +8,11 @@ class MyNotebooksScreen extends HTMLElement
 
     connectedCallback()
     {
+        this.style.display = "flex";
+        this.style.flexDirection = "column";
+        this.style.justifyContent = "space-evenly";
+        this.style.alignItems = "center";
+        
         this.innerHTML = `
             <div style="font-size: 50px;margin:20px;">My Notebooks</div>
             <notebook-browser></notebook-browser>

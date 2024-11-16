@@ -1,5 +1,5 @@
 import { theme } from "../Common/Constants/Theme.js";
-
+import UserDisplayComponent from "./UserDisplayComponent.js";
 class UserListComponent extends HTMLElement
 {
     constructor()

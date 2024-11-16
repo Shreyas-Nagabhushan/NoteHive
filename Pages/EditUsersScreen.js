@@ -41,8 +41,8 @@ class EditUsersScreen extends HTMLElement
         const currentUser = getUser();
         const currentUserEmail = currentUser.email;
 
-        const query = `SELECT * from users where institute_id = (select institute_id from users where email = '${currentUserEmail}')};`;
-        const result = DatabaseConnector.executeQuery(query).then((result) => 
+        const query = `SELECT * from user where institute_id in (select institute_id from user where email = '${currentUserEmail}') AND email != '${currentUserEmail}';`;
+        DatabaseConnector.executeQuery(query).then((result) => 
         {
             const numberOfUsers = result.rows.length;
             for(let i = 0; i < numberOfUsers; i++)

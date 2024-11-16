@@ -19,7 +19,7 @@ export async function login(userInfo)
         return false;
     }
 
-    const query = `SELECT * FROM users WHERE email='${email} AND password='${password}';`;
+    const query = `SELECT * FROM user WHERE email='${email}' AND password='${password}';`;
     const result = await DatabaseConnector.executeQuery(query);
     const rows = result.rows;
     

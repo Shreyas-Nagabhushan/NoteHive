@@ -1,5 +1,6 @@
 import { roles, rolesDisplayNames } from "../Common/Constants/Roles.js";
 import { theme } from "../Common/Constants/Theme.js";
+import DatabaseConnector from "../Database/DatabaseConnector.js";
 
 class UserDisplayComponent extends HTMLElement
 {
@@ -27,8 +28,10 @@ class UserDisplayComponent extends HTMLElement
         `;
 
         const roleSelector = this.querySelector(".role-selector");
-        roleSelector.style.width = "100%";
+        const removeUserButton = this.querySelector(".remove-user-button");
 
+        roleSelector.style.width = "100%";
+        
         for(const role in roles)
         {
             const roleValue = roles[role];
@@ -40,6 +43,19 @@ class UserDisplayComponent extends HTMLElement
         }
 
         roleSelector.value = parseInt(this.getAttribute("role"));
+
+        removeUserButton.addEventListener("click", async(event)=>
+        {
+            const query = `delete from user where email = '${this.getAttribute("email")}';`;
+            await DatabaseConnector.executeQuery(query);
+            this.remove();
+        });
+
+        roleSelector.addEventListener("change", async(event)=>
+        {
+            const query = `update user set role = ${roleSelector.value} where email = '${this.getAttribute("email")}';`;;
+            await DatabaseConnector.executeQuery(query);
+        });
     }
 }
 

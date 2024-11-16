@@ -1,4 +1,4 @@
-import DatabaseConnector from "../Database/DatabaseConnector";
+import DatabaseConnector from "../Database/DatabaseConnector.js";
 
 export async function initializeDatabase()
 {
@@ -26,4 +26,33 @@ export async function initializeDatabase()
    {    
         await DatabaseConnector.executeQuery(`CREATE TABLE user (email VARCHAR(255) PRIMARY KEY, name VARCHAR(64), password VARCHAR(255), role INT, institute_id INT);`);
    }
+
+   if(instituteTableExistsResult.rows.length <= 0)
+   {    
+        await DatabaseConnector.executeQuery(`CREATE TABLE institute (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(64), address VARCHAR(255), established_date DATE);`);  
+   }
+   
+   if(branchTableExistsResult.rows.length <= 0)
+   {    
+        await DatabaseConnector.executeQuery(`CREATE TABLE branch (institute_id INT, name VARCHAR(64), FOREIGN KEY (institute_id) REFERENCES institute(id));`);  
+   }
+
+   if(subjectTableExistsResult.rows.length <= 0)
+   {    
+         await DatabaseConnector.executeQuery(`CREATE TABLE subject (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(64), code VARCHAR(10));`);
+   }
+
+   if(notebookTableExistsResult.rows.length <= 0)
+   {    
+        await DatabaseConnector.executeQuery(`CREATE TABLE notebook (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(64), subject_id INT, FOREIGN KEY (subject_id) REFERENCES subject(id));`);  
+   }
+
+   if(subscribedTableExistsResult.rows.length <= 0)
+   {
+        await DatabaseConnector.executeQuery(`CREATE TABLE subscribed (email VARCHAR(255) , FOREIGN KEY (email) REFERENCES user(email), subject_id INT, FOREIGN KEY (subject_id) REFERENCES subject(id));`);
+   }
+
+   DatabaseConnector.disconnect();
 }
+
+initializeDatabase();

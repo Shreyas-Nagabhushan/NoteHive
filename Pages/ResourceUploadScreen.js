@@ -11,7 +11,8 @@ class ResourceUploadScreen extends HTMLElement
     {
         this.innerHTML = `
             <div style="font-size: 50px;margin:20px;">Resource Upload</div>
-            <resource-upload-component></resource-upload-component>            
+            <resource-upload-component></resource-upload-component>
+            <button class="upload-button" style="width: 50%;">Upload Resource</button>         
         `;
     }
 }

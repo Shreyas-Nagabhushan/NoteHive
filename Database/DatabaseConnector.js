@@ -8,7 +8,7 @@ class DatabaseConnector
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'cs139'
+        database: 'NoteHive'
     };
 
     static async connect()
@@ -21,6 +21,11 @@ class DatabaseConnector
 
     static async disconnect()
     {
+        if(!DatabaseConnector.connection)
+        {
+            return;
+        }
+        
         await DatabaseConnector.connection.end();
         DatabaseConnector.connection = null;
     }

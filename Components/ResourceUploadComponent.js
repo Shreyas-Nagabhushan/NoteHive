@@ -25,7 +25,7 @@ class ResourceUploadComponent extends HTMLElement
 
                 <div style="flex:1;width:100%;">File:</div>
                 <input type="text" class="file-name-display" placeholder="Please upload a file..." readonly>
-                <button class="upload-button" style="width: 50%;">Upload</button>
+                <button class="upload-button" style="width: 50%;">Select File</button>
                 <input type="file" class="file-input" placeholder="Enter file...">
             </div>
 

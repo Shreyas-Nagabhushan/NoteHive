@@ -98,20 +98,18 @@ class SignupComponent extends HTMLElement
             const institute = this.querySelector(".institute-input").value;
             const role = this.querySelector(".role-selector").value;
 
-            const bIsValidInput = this.validateEntry(name, email, password, confirmPassword, institute, role);
-            if(!bIsValidInput)
-            {
-                console.log("Not valid input");
-                return;
-            }
+
             const userInfo = {
                 name: name,
                 email: email,
                 password: password,
+                confirmPassword: confirmPassword,
                 institute: institute,
                 role: role
             }
+
             const bIsUserAdded = await addNewUser(userInfo);
+
             if(bIsUserAdded)
             {
                 console.log("User added");
@@ -122,17 +120,6 @@ class SignupComponent extends HTMLElement
                 console.log("User not added");
             }
         });
-    }
-
-    validateEntry(name, email, password, confirmPassword, institute, role)
-    {
-        //TODO: Add validation
-        // if(name && email && password && confirmPassword && institute && role &&(confirmPassword == password))
-        // {
-        //     return true;
-        // }
-        // return false;
-        return true;
     }
 }
 
