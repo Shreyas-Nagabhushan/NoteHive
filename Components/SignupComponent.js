@@ -1,5 +1,6 @@
 import { roles, rolesDisplayNames } from "../Common/Constants/Roles.js";
 import { theme } from "../Common/Constants/Theme.js";
+import { login } from "../Common/Globals.js";
 import addNewUser from "../Database/UtilityFunctions.js";
 import HomeScreen from "../Pages/HomeScreen.js";
 
@@ -113,6 +114,7 @@ class SignupComponent extends HTMLElement
             if(bIsUserAdded)
             {
                 console.log("User added");
+                await login(userInfo);
                 window.openPage("home-screen");
             }
             else

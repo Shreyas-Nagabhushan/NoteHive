@@ -3,10 +3,15 @@ import { initializeStyles } from "./InitializeStyles.js";
 window.navigationStack = [];
 window.navigationStackPointer = -1;
 
-window.openPage = (pageName)=>
+window.openPage = (pageName, attributeArray = [])=>
 {
     const pageContentDiv = document.body;
     const newPage = document.createElement(pageName);
+    
+    for(let i = 0; i < attributeArray.length; i += 1)
+    {
+        newPage.setAttribute(attributeArray[i][0], attributeArray[i][1]);    
+    }
 
     if(newPage.initialize)
     {

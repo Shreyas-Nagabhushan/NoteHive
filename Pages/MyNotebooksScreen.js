@@ -15,7 +15,7 @@ class MyNotebooksScreen extends HTMLElement
         
         this.innerHTML = `
             <div style="font-size: 50px;margin:20px;">My Notebooks</div>
-            <notebook-browser></notebook-browser>
+            <notebook-browser is-my-notebooks-page="true"></notebook-browser>
         `;
     }
 }
