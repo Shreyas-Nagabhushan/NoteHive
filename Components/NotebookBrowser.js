@@ -43,7 +43,7 @@ class NotebookBrowser extends HTMLElement
             notebookBrowserList.innerHTML = ""; 
 
             const searchValue = event.target.value.toLowerCase();
-            const query = `
+            const query =isMyNotebooksPage ? `
                 SELECT * 
                 FROM notebook 
                 INNER JOIN subscribed ON notebook.id = subscribed.notebook_id
@@ -54,7 +54,13 @@ class NotebookBrowser extends HTMLElement
                     WHERE name LIKE '%${searchValue}%'
                 )
                 ${isMyNotebooksPage ? `AND subscribed.email = '${getUser().email}'` : ""}
-            `;
+            `:
+            `
+                SELECT * 
+                FROM notebook where name LIKE '%${searchValue}%' 
+                OR subject_id in (SELECT id FROM subject WHERE name LIKE '%${searchValue}%');
+            `
+            ;
         
             const result = await DatabaseConnector.executeQuery(query);
 
