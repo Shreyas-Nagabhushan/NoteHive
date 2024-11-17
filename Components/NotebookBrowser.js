@@ -83,6 +83,8 @@ class NotebookBrowser extends HTMLElement
             }
 
         });
+
+        searchBox.dispatchEvent(new CustomEvent('input'));
     }
 }
 

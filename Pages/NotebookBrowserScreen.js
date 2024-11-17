@@ -17,7 +17,7 @@ class NotebookBrowserScreen extends HTMLElement
 
         this.innerHTML = `
             <div style="font-size: 50px;margin:20px;">Notebook Browser</div>
-            <notebook-browser></notebook-browser>
+            <notebook-browser style="flex:1;width:90%;"></notebook-browser>
         `;
     }
 }

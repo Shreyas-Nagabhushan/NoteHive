@@ -1,3 +1,4 @@
+import { theme } from "../Common/Constants/Theme.js";
 import { getUser } from "../Common/Globals.js";
 import DatabaseConnector from "../Database/DatabaseConnector.js";
 import ResourceViewScreen from "../Pages/ResourceViewScreen.js";
@@ -13,13 +14,17 @@ class NotebookDisplayComponent extends HTMLElement
         this.style.display = "flex";
         this.style.justifyContent = "space-evenly";
         this.style.alignItems = "center";
+        this.style.padding = "5px";
+        this.style.backgroundColor = theme.secondaryBackgroundColor;
+        this.style.cursor = "pointer";
+
         const isSubscribed =  this.getAttribute("is-subscribed") == "true";
 
         this.innerHTML = `
-            <div class="notebook-name">${this.getAttribute("name")}</div>
-            <div class="notebook-subject">${this.getAttribute("subject")}</div>
-            <div class="notebook-last-modified">${this.getAttribute("last-modified")}</div>
-            <button class="subscribe-button">${isSubscribed ? "Unsubscribe" : "Subscribe"}</button>
+            <div style="flex:1;" class="notebook-name">${this.getAttribute("name")}</div>
+            <div style="flex:1;" class="notebook-subject">${this.getAttribute("subject")}</div>
+            <div style="flex:1;" class="notebook-last-modified">${this.getAttribute("last-modified")}</div>
+            <button style="flex:1;" class="subscribe-button">${isSubscribed ? "Unsubscribe" : "Subscribe"}</button>
         `;
         
         const subscribeButton = this.querySelector(".subscribe-button");
