@@ -32,7 +32,6 @@ class EditUsersScreen extends HTMLElement
         userListContainer.style.flexDirection = "row";
         userListContainer.style.width = "75%";
         userListContainer.style.height = "80%";
-        userListContainer.style.backgroundColor = "red";
 
         const userListComponent = document.createElement("user-list-component");
         userListContainer.appendChild(userListComponent);

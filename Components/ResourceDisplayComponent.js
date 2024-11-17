@@ -9,6 +9,8 @@ class ResourceDisplayComponent extends HTMLElement
 
     connectedCallback()
     {
+        this.style.display = "flex";
+        
         this.innerHTML = `
             <div class="file-name">${this.getAttribute("file-name")}</div>
             <button class="download-button">Download</button>

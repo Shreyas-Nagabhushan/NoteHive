@@ -10,6 +10,10 @@ class ResourceListComponent extends HTMLElement
 
     connectedCallback()
     {
+        this.style.display = "flex";
+        this.style.flexDirection = "column";
+        
+
         this.innerHTML = `
             <div class="notebook-name-heading">${this.getAttribute("notebook-name")}</div>
             <div class="resource-list">
