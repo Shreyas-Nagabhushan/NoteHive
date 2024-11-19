@@ -57,7 +57,7 @@ export async function initializeDatabase()
 
    if(resourceTableExistsResult.rows.length <= 0)
    {
-        await DatabaseConnector.executeQuery(`CREATE TABLE resource (notebook_id INT, FOREIGN KEY (notebook_id) REFERENCES notebook(id), filename VARCHAR(256) UNIQUE, data LONGBLOB NOT NULL);`);
+        await DatabaseConnector.executeQuery(`CREATE TABLE resource (notebook_id INT, FOREIGN KEY (notebook_id) REFERENCES notebook(id), filename VARCHAR(256), data LONGBLOB NOT NULL);`);
    }
 
    DatabaseConnector.disconnect();
