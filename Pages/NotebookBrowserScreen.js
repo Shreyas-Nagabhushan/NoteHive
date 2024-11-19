@@ -1,3 +1,4 @@
+import { initializeStyles } from "../Common/InitializeStyles.js";
 import NotebookBrowser from "../Components/NotebookBrowser.js";
 
 class NotebookBrowserScreen extends HTMLElement
@@ -19,6 +20,8 @@ class NotebookBrowserScreen extends HTMLElement
             <div style="font-size: 50px;margin:20px;">Notebook Browser</div>
             <notebook-browser style="flex:1;width:90%;"></notebook-browser>
         `;
+
+        initializeStyles();
     }
 }
 

@@ -1,7 +1,7 @@
 import { getUser } from "../Common/Globals.js";
 import DatabaseConnector from "../Database/DatabaseConnector.js";
 import NotebookDisplayComponent from "./NotebookDisplayComponent.js";
-
+import { initializeStyles } from "../Common/InitializeStyles.js";
 class NotebookBrowser extends HTMLElement
 {
     constructor()
@@ -18,8 +18,6 @@ class NotebookBrowser extends HTMLElement
 
         this.innerHTML = 
         `
-            <div class="notebook-browser-heading">Notebook Browser</div>
-
             <input type="text" class="notebook-browser-search" placeholder="Search...">
             <div class="notebook-browser-list">
 
@@ -43,17 +41,10 @@ class NotebookBrowser extends HTMLElement
             notebookBrowserList.innerHTML = ""; 
 
             const searchValue = event.target.value.toLowerCase();
-            const query =isMyNotebooksPage ? `
-                SELECT * 
-                FROM notebook 
-                INNER JOIN subscribed ON notebook.id = subscribed.notebook_id
-                WHERE notebook.name LIKE '%${searchValue}%' 
-                OR notebook.subject_id IN (
-                    SELECT id 
-                    FROM subject 
-                    WHERE name LIKE '%${searchValue}%'
-                )
-                ${isMyNotebooksPage ? `AND subscribed.email = '${getUser().email}'` : ""}
+            const query = isMyNotebooksPage ? `
+                SELECT * from notebook 
+                where id in 
+                (SELECT notebook_id from subscribed where email='${getUser().email}');
             `:
             `
                 SELECT * 
@@ -82,9 +73,11 @@ class NotebookBrowser extends HTMLElement
                 notebookBrowserList.appendChild(notebookDisplay);
             }
 
+            initializeStyles();
         });
 
         searchBox.dispatchEvent(new CustomEvent('input'));
+
     }
 }
 

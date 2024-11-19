@@ -1,3 +1,4 @@
+import { theme } from "../Common/Constants/Theme.js";
 import LoginScreen from "./LoginScreen.js";
 import SignupScreen from "./SignupScreen.js";
 
@@ -23,6 +24,7 @@ class LoginSignupScreen extends HTMLElement
 
         const loginButton = this.querySelector(".login-button");
         const signupButton = this.querySelector(".signup-button");
+        const loginSignupHeading = this.querySelector(".login-signup-heading");
 
         loginButton.addEventListener("click", (event)=>
         {
@@ -32,6 +34,28 @@ class LoginSignupScreen extends HTMLElement
         signupButton.addEventListener("click", (event)=>
         {
             window.openPage("signup-screen");
+        });
+
+        
+        const loginSignupHeadingStyle = 
+        {
+            fontSize: theme.largeFontSize,
+            color: theme.foregroundColor,
+            textAlign: "center",
+            width: "100%"
+        }
+        
+        Object.assign(loginSignupHeading.style, loginSignupHeadingStyle);
+
+        document.querySelectorAll("button").forEach((button)=>
+        {
+            button.style.backgroundColor = theme.secondaryBackgroundColor;
+            button.style.border = "solid white 2px";
+            button.style.color = theme.foregroundColor;
+            button.style.padding = "10px";
+            button.style.width = "25%";
+            button.style.borderRadius = "10px";
+            button.style.fontSize = theme.largeFontSize;
         });
     }
 }

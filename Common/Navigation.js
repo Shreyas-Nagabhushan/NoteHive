@@ -64,6 +64,8 @@ window.goBack = ()=>
     {
         headerComponent.showBackButton();
     }
+
+    initializeStyles();
 }
 
 window.clearAndOpenPage = (pageName)=>

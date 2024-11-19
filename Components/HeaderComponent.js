@@ -26,9 +26,10 @@ class HeaderComponent extends HTMLElement
         this.backButton.style.backgroundColor = theme.secondaryBackgroundColor;
         
         this.backButton.style.left = this.backButton.style.top = "5%";
-        this.backButton.style.width = "100px"
-        this.backButton.style.height = "30px"
+        // this.backButton.style.width = "100px"
+        // this.backButton.style.height = "30px"
         this.backButton.style.position = "fixed";
+        this.backButton.style.fontSize = theme.smallFontSize;
 
         const style = document.createElement('style');
         style.textContent =

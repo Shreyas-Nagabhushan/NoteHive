@@ -18,6 +18,8 @@ class SignupScreen extends HTMLElement
             <div style="font-size: 50px;margin:20px;">Create Account</div>
             <signup-component></signup-component>
         `;
+
+        
     }
 }
 

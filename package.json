@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "main": "Main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
+  "devDependencies": {
     "electron": "^33.2.0",
-    "electron-builder": "^25.1.8",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
     "mysql2": "^3.11.4"
   }
 }

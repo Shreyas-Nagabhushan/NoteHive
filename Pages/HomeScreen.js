@@ -5,6 +5,7 @@ import EditUsersScreen from "./EditUsersScreen.js";
 import ResourceUploadScreen from "./ResourceUploadScreen.js";
 import NotebookBrowserScreen from "./NotebookBrowserScreen.js";
 import MyNotebooksScreen from "./MyNotebooksScreen.js";
+import { initializeStyles } from "../Common/InitializeStyles.js";
 class HomeScreen extends HTMLElement
 {
     constructor()
@@ -74,19 +75,18 @@ class HomeScreen extends HTMLElement
                 });
 
                 this.appendChild(browseResourceButton);
+
+                initializeStyles();
+
+                this.querySelectorAll("button").forEach((button)=>
+                {
+                    button.style.flex = 1;
+                    button.style.cursor = "pointer";
+                    button.style.margin = "10px";
+                });
             }
 
-            this.querySelectorAll("button").forEach((button)=>
-            {
-                button.style.flex = 1;
-                button.style.backgroundColor = theme.primaryBackgroundColor;
-                button.style.border = "solid white 2px";
-                button.style.color = "white";
-                button.style.cursor = "pointer";
-                button.style.borderRadius = "5px";
-                button.style.padding = "5px";
-                button.style.margin = "10px";
-            });
+
         });
 
 

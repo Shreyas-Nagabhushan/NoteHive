@@ -15,7 +15,7 @@ class ResourceViewScreen extends HTMLElement
 
         this.innerHTML = `
             <div style="font-size: 50px;margin:20px;">Resource View</div>
-            <resource-list-component notebook-name="${this.getAttribute("notebook-name")}" notebook-id="${this.getAttribute("notebook-id")}"></resource-list-component>
+            <resource-list-component style="flex:1;width:90%;" notebook-name="${this.getAttribute("notebook-name")}" notebook-id="${this.getAttribute("notebook-id")}"></resource-list-component>
         `;
     }
 }
