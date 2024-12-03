@@ -1,4 +1,4 @@
-import { login } from "../Common/Globals.js";
+import { createAlert, login } from "../Common/Globals.js";
 
 class LoginComponent extends HTMLElement
 {
@@ -60,11 +60,11 @@ class LoginComponent extends HTMLElement
 
             if(bUserLoggedIn)
             {
-                window.openPage("home-screen");
+                window.clearAndOpenPage("home-screen");
             }
             else
             {
-                console.log("Login failed");
+                createAlert("Invalid credentials!");
             }
         });
 

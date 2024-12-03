@@ -47,7 +47,7 @@ class LoginSignupScreen extends HTMLElement
         
         Object.assign(loginSignupHeading.style, loginSignupHeadingStyle);
 
-        document.querySelectorAll("button").forEach((button)=>
+        this.querySelectorAll("button").forEach((button)=>
         {
             button.style.backgroundColor = theme.secondaryBackgroundColor;
             button.style.border = "solid white 2px";

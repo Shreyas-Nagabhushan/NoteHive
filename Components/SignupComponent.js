@@ -1,6 +1,6 @@
 import { roles, rolesDisplayNames } from "../Common/Constants/Roles.js";
 import { theme } from "../Common/Constants/Theme.js";
-import { login } from "../Common/Globals.js";
+import { createAlert, login } from "../Common/Globals.js";
 import addNewUser from "../Database/UtilityFunctions.js";
 import HomeScreen from "../Pages/HomeScreen.js";
 
@@ -115,10 +115,11 @@ class SignupComponent extends HTMLElement
             {
                 console.log("User added");
                 await login(userInfo);
-                window.openPage("home-screen");
+                window.clearAndOpenPage("home-screen");
             }
             else
             {
+                createAlert("Invalid user details!");
                 console.log("User not added");
             }
         });

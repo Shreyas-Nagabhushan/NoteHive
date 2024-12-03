@@ -9,6 +9,7 @@ class SignupScreen extends HTMLElement
 
     connectedCallback()
     {
+        
         this.style.display = "flex";
         this.style.flexDirection = "column";
         this.style.justifyContent = "center";

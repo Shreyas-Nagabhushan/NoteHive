@@ -1,5 +1,5 @@
 import DatabaseConnector from "../Database/DatabaseConnector.js";
-import { getUser } from "../Common/Globals.js";
+import { createAlert, getUser } from "../Common/Globals.js";
 
 class ResourceUploadComponent extends HTMLElement
 {
@@ -32,7 +32,7 @@ class ResourceUploadComponent extends HTMLElement
                 <button class="file-select-button" style="width: 50%;">Select Files</button>
                 <input type="file" class="file-input" placeholder="Enter file..." multiple>
             </div>
-            <button class="upload-button" style="width: 50%;">Upload Resource</button>  
+            <button class="upload-button" style="width: 50%;margin:10px;">Upload Resource</button>  
 
         `;
 
@@ -76,6 +76,7 @@ class ResourceUploadComponent extends HTMLElement
             
             if(!subject || !notebook || !file)
             {
+                createAlert("Please fill all the fields");
                 console.log("Please fill all the fields");
                 return;
             }
@@ -93,7 +94,6 @@ class ResourceUploadComponent extends HTMLElement
 
                 const insertSubjectQuery = `INSERT INTO subject (name, institute_id) VALUES ('${subject}', ${instituteId});`;
                 await DatabaseConnector.executeQuery(insertSubjectQuery);
-
                 console.log("Subject created");
 
             }
@@ -130,7 +130,7 @@ class ResourceUploadComponent extends HTMLElement
                 await DatabaseConnector.disconnect();
                 
             }
-
+            createAlert("Resources uploaded");
             console.log("Resources uploaded");
             
 

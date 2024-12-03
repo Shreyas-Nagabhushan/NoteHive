@@ -9,6 +9,9 @@ class ResourceUploadScreen extends HTMLElement
 
     connectedCallback()
     {
+        this.style.justifyContent = "center";
+        this.style.alignItems = "center";
+        
         this.innerHTML = `
             <div style="font-size: 50px;margin:20px;">Resource Upload</div>
             <resource-upload-component></resource-upload-component>       

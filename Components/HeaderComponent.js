@@ -1,4 +1,5 @@
 import { theme } from '../Common/Constants/Theme.js';
+import { logout } from '../Common/Globals.js';
 
 class HeaderComponent extends HTMLElement
 {
@@ -16,38 +17,73 @@ class HeaderComponent extends HTMLElement
     {
         this.backButton.style.display = "none";
     }
+
+    showLogoutButton()
+    {
+        this.logoutButton.style.display = "inline-block";
+    }
+    hideLogoutButton()
+    {
+        this.logoutButton.style.display = "none";
+    }
     connectedCallback()
     {
         
-        this.backButton = document.createElement("button");
+        this.innerHTML = `
 
-        this.backButton.id = "backButton";
-        this.backButton.innerText = "Back";
-        this.backButton.style.backgroundColor = theme.secondaryBackgroundColor;
-        
-        this.backButton.style.left = this.backButton.style.top = "5%";
-        // this.backButton.style.width = "100px"
-        // this.backButton.style.height = "30px"
-        this.backButton.style.position = "fixed";
-        this.backButton.style.fontSize = theme.smallFontSize;
+            <button class="back-button">Back</button>
+            <button class="logout-button" style="display: none;">Logout</button>
+                   
+        `;
+        this.backButton = this.querySelector(".back-button");
+        this.logoutButton = this.querySelector(".logout-button");
+
+        this.logoutButton.addEventListener("click", (event)=>
+        {
+            logout();
+        });
 
         const style = document.createElement('style');
         style.textContent =
         `            
-            #backButton:hover
+
+            .back-button:hover
             {
                 cursor: pointer;
                 border: 2px solid rgb(0, 136, 255);           
             }
 
-            #backButton
+            .back-button
             {
+                position: fixed;
+                left: 5%;
+                top: 5%;
                 color: white;
                 border: solid white 2px;
-            }    
+            } 
+                
+             .logout-button:hover
+            {
+                cursor: pointer;
+                border: 2px solid rgb(0, 136, 255);           
+            }
+
+            .logout-button
+            {
+                position: fixed;
+                right: 5%;
+                top: 5%;
+                color: white;
+                border: solid white 2px;
+            } 
         `;
 
         this.backButton.onclick = ()=>{ window.goBack(); };
+        
+        this.backButton.style.fontSize = `${theme.mediumFontSize}`;
+        
+        
+
         document.body.appendChild(this.backButton);
         document.body.appendChild(style);
     }
